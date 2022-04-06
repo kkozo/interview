@@ -1,0 +1,68 @@
+= GitHub Proxy Reference Documentation
+:doctype: book
+:toc: left
+
+= Introduction
+
+The GitHub Proxy is a simple application using RestTemplate to retrieve repositories sorted by stars from the public GitHub search API.
+
+For reference the official GitHub documentation can be found https://docs.github.com/en/rest/reference/search[here].
+
+== Requests
+
+The GitHub proxy supports one *GET*-Request with several variations of request parameters.
+Request parameters can be combined. Only the limit function has restrictions leading to errors.
+
+=== Simple Request
+To get started a simple request with *curl* retrieves all repositories since the date *1970-01-01*.
+By default *100* repositories will be returned.
+
+include::{snippets}/rawRequest/curl-request.adoc[]
+include::{snippets}/rawRequest/http-response.adoc[]
+
+=== Response Scheme
+Every response will follow the table.
+
+include::{snippets}/rawRequest/response-fields.adoc[]
+
+=== Request with Date
+To search for a date just provide the query parameter *inceptionDate*.
+Then the search will be restricted to repositories created since that date.
+
+include::{snippets}/dateRequest/curl-request.adoc[]
+include::{snippets}/dateRequest/request-parameters.adoc[]
+
+=== Request with Date and language
+
+This variation will filter repositories for date and main programming language.
+
+include::{snippets}/dateAndLanguageRequest/curl-request.adoc[]
+Parameters for the request are:
+include::{snippets}/dateAndLanguageRequest/request-parameters.adoc[]
+
+=== Limits
+Limits can be added but the only allowed values are 10, 50 and 100. Every other number will lead to an error.
+
+include::{snippets}/limitRequest/curl-request.adoc[]
+include::{snippets}/limitRequest/response-body.adoc[]
+
+A request with illegal values:
+include::{snippets}/badLimitRequest/curl-request.adoc[]
+results in a simple 400.
+include::{snippets}/badLimitRequest/http-response.adoc[]
+
+=== Ordering
+
+Lastly repositories can be ordered with sortKey enums *ASC* and *DESC* for ascending and descending order respectively.
+
+include::{snippets}/orderRequest/curl-request.adoc[]
+Ordering is just one parameter.
+include::{snippets}/orderRequest/request-parameters.adoc[]
+
+=== Addtional Notes and comments
+The GitHub search API behaves a bit odd when you barely give it any parameters.
+If you omit a *language* for example and you only provide an *inceptionDate* the results will be wildly different.
+
+*One more note*:
+I regret not mapping the responses to something better.
+For REST-Docs to call real APIs is not good for building.
