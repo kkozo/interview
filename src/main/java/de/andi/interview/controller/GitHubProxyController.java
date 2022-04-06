@@ -33,7 +33,7 @@ public class GitHubProxyController {
         this.repositoryService = repositoryService;
     }
 
-    @GetMapping(name = "Search Repositories", value = "/repositories/search")
+    @GetMapping(name = "Search Repositories", value = "/repositories")
     @Operation(description = """
                 Retrieve Repositories filtered by criteria. \n
                 If no inceptionDate is provided, the query will instead use 1970-01-01 as a default. \n

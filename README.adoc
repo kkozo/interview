@@ -3,6 +3,10 @@
 == Summary
 
 This is the Interview challenge.
+For a detailed API reference please compile the project and check the documentation under:
+```
+target/generated-docs/documentation.html
+```
 
 == How to use
 
