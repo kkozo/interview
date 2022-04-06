@@ -50,7 +50,7 @@ public class GitHubProxyController {
                                                                    @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                                                                    @RequestParam(value = "language", required = false) Optional<String> language,
                                                                    @RequestParam(value = "sort", required = false) Optional<OrderEnum> orderEnum) {
-        if (limit != 10 || limit != 50 || limit != 100) { // probably better with validated and exception handler -> quick & dirty
+        if (limit != 10 && limit != 50 && limit != 100) { // probably better with validated and exception handler -> quick & dirty
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         return ResponseEntity.ok(repositoryService.searchRepository(inceptionDate.orElse(LocalDate.EPOCH), language, orderEnum.map(OrderEnum::getMappedOrder), limit).items());

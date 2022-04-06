@@ -3,6 +3,7 @@ package de.andi.interview.service;
 import de.andi.interview.data.github.GitHubRepositoryResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +22,7 @@ public class GitHubRepositoryService {
         this.gitHubQueryBuilder = gitHubQueryBuilder;
     }
 
+    @Cacheable(cacheNames = "repositories", key = "{#inceptionDate, #language, #order, #limit}", unless = "#result.totalCount() == 0 or #result == null")
     public GitHubRepositoryResponseDto searchRepository(LocalDate inceptionDate, Optional<String> language, Optional<String> order, int limit) {
         String targetUrl = gitHubQueryBuilder.buildUrl(inceptionDate, order, language, limit);
         GitHubRepositoryResponseDto githubResponse = this.githubRestTemplate.getForObject(targetUrl, GitHubRepositoryResponseDto.class);

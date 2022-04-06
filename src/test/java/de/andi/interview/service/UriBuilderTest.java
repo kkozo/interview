@@ -13,7 +13,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = GitHubQueryBuilder.class)
-public class UriBuilderTest {
+class UriBuilderTest {
 
     @Autowired
     private GitHubQueryBuilder gitHubQueryBuilder;
@@ -21,7 +21,7 @@ public class UriBuilderTest {
 
 
     @Test
-    public void testSimpleDefaultDateQuery() {
+    void testSimpleDefaultDateQuery() {
         // act
         String targetUrl = gitHubQueryBuilder.buildUrl(LocalDate.EPOCH, Optional.empty(), Optional.empty(), 100);
         // test
@@ -29,7 +29,7 @@ public class UriBuilderTest {
     }
 
     @Test
-    public void testSimpleOrderedDateQuery() {
+    void testSimpleOrderedDateQuery() {
         // act
         String targetUrl = gitHubQueryBuilder.buildUrl(LocalDate.EPOCH, Optional.of("desc"), Optional.empty(), 100);
         // test
@@ -37,7 +37,7 @@ public class UriBuilderTest {
     }
 
     @Test
-    public void testSimpleDateQuery() {
+    void testSimpleDateQuery() {
         // act
         String targetUrl = gitHubQueryBuilder.buildUrl(LocalDate.of(2022,04,06), Optional.of("desc"), Optional.empty(), 100);
         // test
@@ -46,7 +46,7 @@ public class UriBuilderTest {
 
     @ParameterizedTest
     @ValueSource(ints = {10, 50, 100})
-    public void testSimpleLimitQuery(int limit) {
+    void testSimpleLimitQuery(int limit) {
         // act
         String targetUrl = gitHubQueryBuilder.buildUrl(LocalDate.EPOCH, Optional.empty(), Optional.empty(), limit);
         // test
@@ -56,7 +56,7 @@ public class UriBuilderTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"c", "kotlin", "java"})
-    public void testSimpleLanguageQuery(String limit) {
+    void testSimpleLanguageQuery(String limit) {
         // act
         String targetUrl = gitHubQueryBuilder.buildUrl(LocalDate.EPOCH, Optional.empty(), Optional.of(limit), 100);
         // test

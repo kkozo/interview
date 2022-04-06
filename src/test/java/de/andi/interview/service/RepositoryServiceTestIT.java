@@ -14,14 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ActiveProfiles("integration")
-public class RepositoryServiceTestIT {
+class RepositoryServiceTestIT {
 
     @Autowired
     private GitHubRepositoryService repositoryService;
 
     @ParameterizedTest(name = "Test returns of GitHub")
     @ValueSource(ints = {10, 50, 100})
-    public void testSimpleLimitedDateQuery(int limit) {
+    void testSimpleLimitedDateQuery(int limit) {
         // act
         GitHubRepositoryResponseDto test = repositoryService.searchRepository(LocalDate.EPOCH, Optional.empty(), Optional.of("desc"), limit);
         // test
