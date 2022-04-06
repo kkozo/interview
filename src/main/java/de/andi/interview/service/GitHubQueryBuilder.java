@@ -27,6 +27,12 @@ public class GitHubQueryBuilder {
         return targetUrl;
     }
 
+    /**
+     * Build the initial query string for date and language.
+     * @param inceptionDate
+     * @param language
+     * @return
+     */
     private String createInitialQuery(LocalDate inceptionDate, Optional<String> language) {
         return language.map(lang -> "created:>%s+language:%s".formatted(inceptionDate, lang))
                 .orElse("created:>%s".formatted(inceptionDate));
