@@ -10,8 +10,8 @@
     </parent>
     <groupId>de.andi</groupId>
     <artifactId>Interview</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Interview</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>interview</name>
     <description>Interview</description>
     <properties>
         <java.version>17</java.version>
@@ -36,6 +36,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.6</version>
         </dependency>
     </dependencies>
 

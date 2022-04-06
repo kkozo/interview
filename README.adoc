@@ -2,7 +2,19 @@
 
 == Summary
 
+This is the Interview challenge.
+
 == How to use
+
+The application launches a http://localhost:8080/swagger-ui.html[http://localhost:8080/swagger-ui].
+From there queries to GitHub can be performed.
+
+=== For Development
+
+```
+mvn clean install
+java -Dspring.profiles.active=dev -jar target/Interview-0.0.1-SNAPSHOT.jar
+```
 
 == Reference
 

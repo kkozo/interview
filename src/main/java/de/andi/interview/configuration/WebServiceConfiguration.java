@@ -13,6 +13,6 @@ public class WebServiceConfiguration {
     public RestTemplate gitApiRestTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
                 .requestFactory(() -> new HttpComponentsClientHttpRequestFactory())
-                .rootUri("https://api.github.com/search/repositories?q=").build();
+                .rootUri("https://api.github.com").build();
     }
 }
