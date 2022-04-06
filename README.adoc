@@ -19,7 +19,7 @@ Caching is enabled by default and set to 1 minute expiry after access.
 
 ```
 mvn clean install
-java -Dspring.profiles.active=dev -jar target/Interview-0.0.1-SNAPSHOT.jar
+java -Dspring.profiles.active=dev -jar target/Interview-1.0.0-SNAPSHOT.jar
 ```
 
 == Reference
