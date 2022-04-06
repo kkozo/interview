@@ -12,7 +12,7 @@ public class WebServiceConfiguration {
     @Bean
     public RestTemplate gitApiRestTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
-                .requestFactory(() -> new HttpComponentsClientHttpRequestFactory())
+                .requestFactory(HttpComponentsClientHttpRequestFactory::new)
                 .rootUri("https://api.github.com").build();
     }
 }

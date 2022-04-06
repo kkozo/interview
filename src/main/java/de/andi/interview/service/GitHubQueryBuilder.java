@@ -16,20 +16,22 @@ public class GitHubQueryBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(GitHubQueryBuilder.class);
 
-    public GitHubQueryBuilder() {
-
-    }
-
-    public String buildUrl(Optional<String> order, Optional<LocalDate> optLocalDate, Optional<String> language, int limit) {
-        String targetUrl = UriComponentsBuilder.fromUriString("/search/repositories?q=")
+    public String buildUrl(LocalDate inceptionDate, Optional<String> order, Optional<String> language, int limit) {
+        String targetUrl = UriComponentsBuilder.fromUriString("/search/repositories?q=" + createInitialQuery(inceptionDate, language))
                 .queryParam("sort", "stars") // default to sorting by stars
                 .queryParamIfPresent("order", order) // sorting asc/desc
                 .queryParam("per_page", limit) // limit
                 .queryParam("page", 1) // default first page
-                .toUriString().replaceAll("=&", "=");
-        // unfortunately nasty hack to remove the additional =& the compoonents builder places
+                .build().toUriString(); // forgot build last time :/
         logger.debug("Path created {}", targetUrl);
         return targetUrl;
+    }
+
+    private String createInitialQuery(LocalDate inceptionDate, Optional<String> language) {
+        return language.map(lang -> "created:>%s+language:%s".formatted(inceptionDate, lang))
+                .orElse("created:>%s".formatted(inceptionDate));
+
+
     }
 
 }
